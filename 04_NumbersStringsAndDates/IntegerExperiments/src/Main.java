@@ -12,14 +12,22 @@ public class Main
     public static Integer sumDigits(Integer name)
     {
         String  input =Integer.toString(name);
+        int count = 0;
 
-        Integer number1  = Integer.parseInt(String.valueOf(input.charAt(0)));
-        Integer number2  = Integer.parseInt(String.valueOf(input.charAt(1)));
-        Integer number3  = Integer.parseInt(String.valueOf(input.charAt(2)));
+        char index;
 
-        //@TODO: write code here
+        for(int i = 0; i < input.length(); i++) {
 
-        return number1+number2+number3 ;
+            index = input.charAt(i);
+
+            int  intNumber = Integer.parseInt(String.valueOf(index));
+
+
+            count += intNumber ;
+
+        }
+
+       return count;
     }
 
 
