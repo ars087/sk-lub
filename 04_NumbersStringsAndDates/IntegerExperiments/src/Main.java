@@ -1,13 +1,17 @@
-public class Main
+public class Main     //
 {
     public static void main(String[] args)
     {
         Container container = new Container();
+
         container.count += 7843;
+
         System.out.println(   container.count );
 
         System.out.println( sumDigits(569));
     }
+
+
 
     public static Integer sumDigits(Integer name)
     {
@@ -23,11 +27,14 @@ public class Main
             int  intNumber = Integer.parseInt(String.valueOf(index));
 
 
+
             count += intNumber ;
 
         }
 
        return count;
+
+
     }
 
 
