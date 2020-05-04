@@ -1,8 +1,7 @@
 import java.util.Scanner;
-
     public class Shipping {
         public static void main(String[] args) {
-
+            System.out.println("Ведите количество перевозимых коробок! ");
             Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
 
@@ -10,7 +9,6 @@ import java.util.Scanner;
             int oneCargoContainer = 12; // количество  контейнеров  вмещающихся в один грузовой автомобиль
             int boxInContainer = 27; // количество  вмещающихся коробок в одном контейнере
             int allBoxInOneCargo = boxInContainer * oneCargoContainer ;// общее количество коробо к в одном авто
-
 
             final int ZERO = 0;
             int i = 0; //счетчик ящиков
@@ -23,7 +21,6 @@ import java.util.Scanner;
                 if (  i != ZERO  ) {   //////считаем грузовики
                     System.out.println("\t"  + "\t" + "\t" + "\t" + "ящик№" + i);
                 }
-
                 int moduloDivisionCargo = i % allBoxInOneCargo;
 
                 if( moduloDivisionCargo  == ZERO ) {
@@ -38,7 +35,6 @@ import java.util.Scanner;
                     }
 
                 }
-
                 ///////////считаем контейнеры
                 int  moduloDivisionContainer = i % boxInContainer; //- остаток от i - определение контейнеров
                 if (moduloDivisionContainer == ZERO) {
@@ -47,7 +43,6 @@ import java.util.Scanner;
                     if (i != number) {
                         System.out.println("\t" + "\t" + "контейнер № " + containerPlus);
                     }
-
                     if (i == number){
 
                         containerPlus -=1;
@@ -59,7 +54,6 @@ import java.util.Scanner;
                     break;
 
                 }
-
             }/////////////////////////////////////////////////завершение цикла
 
             int leftoversBoxes = i % boxInContainer;
@@ -77,7 +71,6 @@ import java.util.Scanner;
 
             }
         }
-
     }
 
 
