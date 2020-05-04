@@ -1,5 +1,7 @@
 public class MaxMinValue {
 
+
+
     public static void main(String[] args) {
 
         int maxValue1 = Integer.MAX_VALUE;
@@ -27,8 +29,6 @@ public class MaxMinValue {
         System.out.println( "double|" + maxValue5 + "|" + minValue5);
         System.out.println( "float|" + maxValue6 + "|" + minValue6);
 
-
     }
-
 
 }
