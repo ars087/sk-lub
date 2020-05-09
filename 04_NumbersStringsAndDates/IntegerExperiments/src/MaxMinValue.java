@@ -17,17 +17,17 @@ public class MaxMinValue {
         short minValue4 = Short.MIN_VALUE;
 /////////////////////////////////////////////***///////////////////////////////////////////////////////
         double maxValue5 = Double.MAX_VALUE;
-        double minValue5 = Double.MIN_VALUE;
+        double minValue5 = - Double.MAX_VALUE;
 
-        float maxValue6 = Float.MAX_VALUE;
-        float minValue6 = Float.MIN_VALUE;
+        float maxValue6 =  Float.MAX_VALUE ;
+        float minValue6 = - Float.MAX_VALUE;
 
         System.out.println("int|" + maxValue1 + "|" + minValue1);
         System.out.println( "byt|" + maxValue2 + "|" + minValue2);
         System.out.println( "long|" + maxValue3 + "|" + minValue3);
         System.out.println( "short|" + maxValue4 + "|" + minValue4);
-        System.out.println( "double|" + maxValue5 + "|" + minValue5);
-        System.out.println( "float|" + maxValue6 + "|" + minValue6);
+        System.out.println( "double|" + maxValue5 + "|min" + minValue5);
+        System.out.println( "float|" + maxValue6 + "|min" + minValue6);
 
     }
 
