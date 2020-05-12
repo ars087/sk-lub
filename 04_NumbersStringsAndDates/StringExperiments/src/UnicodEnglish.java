@@ -11,7 +11,6 @@ public class UnicodEnglish {
             String smallLetterEnglish = "abcdefghijklmnopqrstuvwxyz";
             String figures = "0123456789";
 
-
             char bigLetter;
             int bigLetterInt;
 
@@ -42,14 +41,12 @@ public class UnicodEnglish {
 
                 System.out.println(bigLetter + "| " + bigLetterInt + "|" + smollLetter + "|" +smollLetterInt);
 
-
             }
 
             for( x = x; x < letterEnglish.length(); x++ ) {
 
                 bigLetterEnglish = letterEnglish.charAt(x);// английские буквы в печать
                 bigLetterEnglishInt =(int) bigLetterEnglish;     /// англ инт в кодировке
-
 
                 smollLetterEnglish = smallLetterEnglish.charAt(x); //вывод английских  букв нижнего регистра
                 smallLetterEnglishInt = (int) smollLetterEnglish;
