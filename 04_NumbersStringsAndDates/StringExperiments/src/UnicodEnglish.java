@@ -14,6 +14,7 @@ public class UnicodEnglish {
             char bigLetter;
             int bigLetterInt;
 
+
             char smollLetter;
             int smollLetterInt;
 
@@ -42,7 +43,6 @@ public class UnicodEnglish {
                 System.out.println(bigLetter + "| " + bigLetterInt + "|" + smollLetter + "|" +smollLetterInt);
 
             }
-
             for( x = x; x < letterEnglish.length(); x++ ) {
 
                 bigLetterEnglish = letterEnglish.charAt(x);// английские буквы в печать
@@ -54,7 +54,6 @@ public class UnicodEnglish {
                 System.out.println(bigLetterEnglish + "| " + bigLetterEnglishInt + "|" + smollLetterEnglish + "|" + smallLetterEnglishInt);
 
             }
-
             for( g=g; g <figures.length(); g++ ) {
 
                 figuresChar = figures.charAt(g);
