@@ -168,12 +168,10 @@ import java.util.Scanner;
 
                         } else {
 
-
                             System.out.println("Введите данные разделяя  фамилию, имя, отчество пробелом!!");
                             System.out.println("Возможно вы ввели не полные данные!");
 
                             x = 0;
-
 
                             countSurname = 0;
                             countName= 0;
@@ -209,7 +207,6 @@ import java.util.Scanner;
                     System.out.println("Данные не введены!!! Впишите ваше ФИО ");
 
                     fullName = scanner.nextLine();
-
 
                 }
 
@@ -268,7 +265,6 @@ import java.util.Scanner;
                 printPatronymic =printPatronymic.replaceFirst(requiredLetterPatronymic , replaceFirstLetterPatronymic);
 
             }
-
             System.out.println("Данные введены верно!!!");
 
             System.out.println("Фамилия :" +printSurname.trim());
