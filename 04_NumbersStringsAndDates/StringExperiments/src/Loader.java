@@ -14,12 +14,10 @@ public class Loader
             int petayIndexTwo = text.lastIndexOf(',');
             String substringPetya = text.substring(petayIndex, petayIndexTwo);
 
-
             int petaySalary = substringPetya.indexOf('-') + 1;
             int petaySalaryTwo = substringPetya.lastIndexOf(' ');
             String substringPetaTwo = substringPetya.substring(petaySalary, petaySalaryTwo);
             int parseIntPetya = Integer.parseInt(substringPetaTwo.trim());
-
 
             ///////////////////////////////////////////////////////////////////////////
             int MashaIndexOne = text.lastIndexOf('-') + 1;
