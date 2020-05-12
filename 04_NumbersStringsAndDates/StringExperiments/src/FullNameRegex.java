@@ -203,9 +203,7 @@ public class FullNameRegex {
                         countSecondSpace = 0; // подсчет количества пробелов после имени.
                         spaceThirdSpace = 0; // подсчет количества пробелов после отчества.
 
-
                         letterBeforIntpatronymic = 0; // буквы после отчества
-
 
                         isClosingSurname = true; // закрытие подсчета фамилии
                         isClosingName = false;// закрытие подсчета имени
