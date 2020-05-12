@@ -7,6 +7,7 @@ public class Loade_4_5 {
         String countText = text.replaceAll("[^0-9]"," ");
 
         String[]  textSplit  = countText.trim().split("\\s+");
+
         int i=0;
 
         int vasya = 0;
@@ -17,7 +18,6 @@ public class Loade_4_5 {
         if ( textSplit.length >1) {
 
             for (i = i; i < textSplit.length; i++) {
-
 
                 if (i == 0) {
                     vasya = Integer.parseInt(textSplit[i]);
