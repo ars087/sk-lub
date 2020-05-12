@@ -20,6 +20,7 @@ public class PrintEnglishText {
                 "\n" +
                 "This is the order, teacher but see what best you can do. He is such a nice little boy and he is my son. ";
 
+
         String countText = text.replaceAll("[.,]", " ");
 
         String[] textSplit = countText.trim().split("\\s+");
@@ -27,6 +28,7 @@ public class PrintEnglishText {
         int x = 0;
         for (i = i; i <= textSplit.length; i++) {
             x += 1;
+
 
             System.out.println(textSplit[i]);
             if (textSplit.length == x) {
