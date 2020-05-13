@@ -11,21 +11,41 @@ public class UnicodEnglish {
             String smallLetterEnglish = "abcdefghijklmnopqrstuvwxyz";
             String figures = "0123456789";
 
-            char bigLetter;
-            int bigLetterInt;
+
+            for (Character ch : letterRussian.toCharArray()) {
+
+                int charDigit = (int) ch;
+                System.out.println(ch + " | " + charDigit);
+
+             }
+
+            for (Character ch : smallLetterRussian.toCharArray()) {
+
+                int charDigit = (int) ch;
+                System.out.println(ch + " | " + charDigit);
+
+            }
+
+            for (Character ch : letterEnglish.toCharArray()) {
+
+                int charDigit = (int) ch;
+                System.out.println(ch + " | " + charDigit);
+            }
 
 
-            char smollLetter;
-            int smollLetterInt;
+            for (Character ch : smallLetterEnglish.toCharArray()) {
 
-            char bigLetterEnglish;
-            int bigLetterEnglishInt;
+                int charDigit = (int) ch;
+                System.out.println(ch + " | " + charDigit);
+            }
 
-            char  smollLetterEnglish;
-            int smallLetterEnglishInt;
+            for (Character ch :figures .toCharArray()) {
 
-            char figuresChar;
-            int figuresInt;
+                int charDigit = (int) ch;
+                System.out.println(ch + " | " + charDigit);
+            }
+
+            System.out.println("----------------*********************----------------------");
 
             int i = 0;
             int x = 0;
@@ -33,35 +53,36 @@ public class UnicodEnglish {
 
             for (i = i; i < letterRussian.length();i++) {
 
-                bigLetter = letterRussian.charAt(i); //русские буквы в печать--верхний регистр
-                bigLetterInt =  bigLetter; /// русские буквы  int кодировка //преобразование
+                char   bigLetter = letterRussian.charAt(i); //русские буквы в печать--верхний регистр
 
-                smollLetter = smallLetterRussian.charAt(i); //печать буквы в нижнем регистре
-                smollLetterInt = (int) smollLetter;   //преобразование в int
+                char  smollLetter = smallLetterRussian.charAt(i); //печать буквы в нижнем регистре
 
 
-                System.out.println(bigLetter + "| " + bigLetterInt + "|" + smollLetter + "|" +smollLetterInt);
+                System.out.println(bigLetter + "| " + (int) bigLetter + "|" + smollLetter + "|" + (int) smollLetter);
 
             }
             for( x = x; x < letterEnglish.length(); x++ ) {
 
-                bigLetterEnglish = letterEnglish.charAt(x);// английские буквы в печать
-                bigLetterEnglishInt =(int) bigLetterEnglish;     /// англ инт в кодировке
+            char  bigLetterEnglish = letterEnglish.charAt(x);// английские буквы в печать
 
-                smollLetterEnglish = smallLetterEnglish.charAt(x); //вывод английских  букв нижнего регистра
-                smallLetterEnglishInt = (int) smollLetterEnglish;
+            char smollLetterEnglish = smallLetterEnglish.charAt(x); //вывод английских  букв нижнего регистра
 
-                System.out.println(bigLetterEnglish + "| " + bigLetterEnglishInt + "|" + smollLetterEnglish + "|" + smallLetterEnglishInt);
+
+
+             System.out.println(bigLetterEnglish + "| " + (int) bigLetterEnglish + "|" + smollLetterEnglish + "|" +(int) smollLetterEnglish);
 
             }
-            for( g=g; g <figures.length(); g++ ) {
+            for( g = g; g <figures.length(); g++ ) {
 
-                figuresChar = figures.charAt(g);
-                figuresInt = (int)  figuresChar;
+              char  figuresChar = figures.charAt(g);
 
 
-                System.out.println(figuresChar + "|" + figuresInt);
+                System.out.println( figuresChar + "|" + (int)figuresChar );
             }
+
         }
+
+
+
     }
 
