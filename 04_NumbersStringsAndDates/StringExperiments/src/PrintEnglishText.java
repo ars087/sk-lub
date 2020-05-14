@@ -18,24 +18,16 @@ public class PrintEnglishText {
                 "\n" +
                 "Teach him to sell his talents and brains to the highest bidder but never to put a price tag on his heart and soul. Let him have the courage to be impatient, let him have the patient to be brave. Teach him to have sublime faith in himself, because then he will always have sublime faith in mankind, in God.\n" +
                 "\n" +
-                "This is the order, teacher but see what best you can do. He is such a nice little boy and he is my son. ";
+                "This is the order, teacher but see what best you can do. He is such a nice little boy and he is my son.,;:() ";
 
 
-        String countText = text.replaceAll("[.,]", " ");
+        String countText = text.replaceAll("\\p{Punct}", " ");
 
         String[] textSplit = countText.trim().split("\\s+");
-        int i = 0;
-        int x = 0;
-        for (i = i; i <= textSplit.length; i++) {
-            x += 1;
 
+        for (String  symbol :  textSplit) {
 
-            System.out.println(textSplit[i]);
-            if (textSplit.length == x) {
-                System.out.println("Количество слов = " + x);
-                System.out.println(aLetter);
-                break;
-            }
+            System.out.println( symbol);
 
         }
 
