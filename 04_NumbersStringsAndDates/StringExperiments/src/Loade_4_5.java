@@ -2,6 +2,27 @@ public class Loade_4_5 {
 
     public static void main(String[] args)
     {
+
+        String text = "Вася заработал 5000 рублей, Петя 7563 - рубля, а Маша 30000 - рублей";
+        String countText = text.replaceAll("[^0-9]", " ");
+        String[] textSplit = countText.trim().split("\\s+");
+
+        if (textSplit.length > 0) {
+            int salarySum = 0;
+            for (String salaryString : textSplit) {
+                salarySum += Integer.parseInt(salaryString);
+            }
+            System.out.println("Сумма зарплат:" + salarySum);
+
+        } else {
+            System.out.println("Данные отсутствуют");
+        }
+
+
+
+
+        /*
+
         String text = "Вася заработал 5000 рублей, Петя 7563 - рубля, а Маша 30000 - рублей";
 
         String countText = text.replaceAll("[^0-9]"," ");
@@ -45,7 +66,7 @@ public class Loade_4_5 {
 
         }else {
             System.out.println("Данные отсутствуют");}
-
+*/
     }
 
 
