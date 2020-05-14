@@ -31,6 +31,9 @@ public class BirthdayPrint {
         int i =0;
 
         while ( cycle ){
+
+
+
             i+=1;
             String countText = birthday.replaceAll("[/.,\\-]", "");
 
@@ -124,7 +127,7 @@ public class BirthdayPrint {
                             i=0;
                             continue;
                         }
-                        int dfg = 14/4;
+                       // int dfg = 14/4;
                     } else { System.out.println(i + ")" + dateFormatt.format(doday)  ); }
 
 
