@@ -23,7 +23,6 @@ import java.util.Scanner;
                 return;
             }
             printAllBirthday(birthday);
-
         }
         public static void printAllBirthday(LocalDate birthdayOne)  {
             LocalDate today = LocalDate.now();

@@ -147,13 +147,10 @@ import java.util.Scanner;
 
                         }
 
-
-
                     } else {
                         System.out.println("Введен не допустимый символ :" + indexInput + "|" + "Пожалуйста вводите данные правильно!");
 
                         x = 0;
-
 
                         fullName = scanner.nextLine();
                     }

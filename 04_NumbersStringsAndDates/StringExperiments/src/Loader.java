@@ -30,7 +30,6 @@ public class Loader
             System.out.println("Заработок Маша" + substringMasha);
             System.out.println("Общая сумма заработка Васи, Пети и Маши :" + summa + "рублей");
 
-
         }
     }
 

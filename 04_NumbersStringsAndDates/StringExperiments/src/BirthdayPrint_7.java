@@ -8,7 +8,6 @@ class test_6 {
 
     public static void main(String[] args) throws ParseException {
 
-
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         dateFormat.setLenient(false);
         Calendar birthday = Calendar.getInstance();
@@ -36,7 +35,7 @@ class test_6 {
 
         while ( today.after(birthdayOne)) {
 
-            if( birthdayOne.get(Calendar.MONTH ) == Calendar.FEBRUARY && birthdayOne.get(Calendar.DATE)== 29) {
+            if( birthdayOne.get(Calendar.MONTH ) == Calendar.FEBRUARY && birthdayOne.get(Calendar.DATE) == 29) {
 
                 birthdayOne.roll(Calendar.YEAR, 4);
 

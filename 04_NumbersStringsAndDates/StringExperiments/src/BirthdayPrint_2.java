@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class BirthdayPrint_2 {
 
-
     public static void main(String[] args) throws InterruptedException {
 
         DateFormat dateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");

@@ -20,7 +20,6 @@ public class PrintEnglishText {
                 "\n" +
                 "This is the order, teacher but see what best you can do. He is such a nice little boy and he is my son.,;:() ";
 
-
         String countText = text.replaceAll("\\p{Punct}", " ");
 
         String[] textSplit = countText.trim().split("\\s+");

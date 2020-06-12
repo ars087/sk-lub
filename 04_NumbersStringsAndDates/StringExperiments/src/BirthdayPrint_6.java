@@ -1,9 +1,11 @@
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 import java.time.format.ResolverStyle;
+import java.util.Locale;
 import java.util.Scanner;
 
 class BirthdayPrint_6 {
@@ -11,7 +13,6 @@ class BirthdayPrint_6 {
     public static void main(String[] args){
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("uuuu.MM.dd").withResolverStyle(ResolverStyle.STRICT);
-
 
         LocalDate  birthday;
         String input = new Scanner(System.in).nextLine();
@@ -37,6 +38,9 @@ class BirthdayPrint_6 {
 
         while ( today.isAfter(birthdayOne)) {
 
+            ZoneId zoneId = ZoneId.of("Europe/Samara");
+
+
             boolean  isLeap = birthdayOne.isLeapYear();
             Month  month = birthdayOne.getMonth();
             int date = birthdayOne.getDayOfMonth();
@@ -45,7 +49,7 @@ class BirthdayPrint_6 {
                     birthdayOne = birthdayOne.plusYears(4);
 
                 if(today.isAfter(birthdayOne)) {
-                    System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(birthdayOne));
+                    System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(birthdayOne) + zoneId);
 
                 }
             }else {
@@ -53,7 +57,7 @@ class BirthdayPrint_6 {
                     birthdayOne = birthdayOne.plusYears(1);
 
                 if(today.isAfter(birthdayOne)) {
-                    System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(birthdayOne));
+                    System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(birthdayOne) + zoneId);
 
                 }
             }

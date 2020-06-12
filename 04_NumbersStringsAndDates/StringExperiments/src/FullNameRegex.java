@@ -9,7 +9,6 @@ public class FullNameRegex {
         System.out.println("Напишите вашу Фамилию, Имя, Отчество!");
         String fullName = scanner.nextLine();
         while (true) {
-
             if (fullName.matches(REG_FULLNAME)) {
 
                 String [] text = fullName.split("\\s+");

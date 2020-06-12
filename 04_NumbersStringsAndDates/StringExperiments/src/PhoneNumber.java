@@ -6,7 +6,6 @@ import java.util.Scanner;
 
         public static void main(String[] args) {
 
-
             final String REG_FULLNAME = "^[7|8]\\d{10}"; // в этой строке впишите регулярку
 
             Scanner scanner = new Scanner(System.in);

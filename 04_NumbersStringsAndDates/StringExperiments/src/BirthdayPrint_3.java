@@ -13,7 +13,6 @@ import java.util.Scanner;
 
         public static void main(String[] args) throws ParseException {
 
-
             DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 
             Calendar birthday = Calendar.getInstance();

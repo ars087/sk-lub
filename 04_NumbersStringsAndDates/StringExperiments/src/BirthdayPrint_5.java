@@ -25,7 +25,6 @@ class BirthdayPrint_5 {
 
         printAllBirthday(birthday);
     }
-
     public static void printAllBirthday(Calendar birthday)  {
         DateFormat dateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
         Calendar today = Calendar.getInstance();

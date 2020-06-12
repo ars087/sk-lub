@@ -11,7 +11,6 @@ public class UnicodEnglish {
             String smallLetterEnglish = "abcdefghijklmnopqrstuvwxyz";
             String figures = "0123456789";
 
-
             for (Character ch : letterRussian.toCharArray()) {
 
                 int charDigit = (int) ch;
