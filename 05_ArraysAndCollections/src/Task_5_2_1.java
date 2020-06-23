@@ -7,108 +7,152 @@ public class Task_5_2_1 {
 
         final String ADD = "ADD";
         final String DELETE = "DELETE";
-        final  String EDIT = "EDIT";
-        final  String LIST = "LIST";
-
+        final String EDIT = "EDIT";
+        final String LIST = "LIST";
 
         ArrayList<String> list = new ArrayList<>();
 
-        for (; ;) {
-            System.out.println("Введите ключевое слово!");
+        for (; ; ) {
+            System.out.println( "\t \t \t Для внесения изменений в список используйте следующие ключевые слова," + "\n"
+                    + "\t \t \t добавить - ADD, редактировать - EDITE, удалить - DELETE, вывести на экран все позиции в списке - LIST");
+
+
             String input = new Scanner(System.in).nextLine();
-            if (input.length() != 0) {
+
+            addIndex(input, list);
+            editeIndex(input, list);
+            deleteIndex(input, list);
+            listIndex( input,list);
+
+            if (list.size() == 0) {
+
+                System.out.println("Список пуст! Добавьте позицию.");
+
+            } else {
+                System.out.println("В списке позиций - " + list.size());
+            }
+
+        }
+
+    } //// бесконечный цикл
 
 
-                if (input.subSequence(0, ADD.length()).equals(ADD)) {
+    ////////////////////////////////Метод ADD///////////////////////////////////////////////
+    private static void addIndex(String add, ArrayList<String> list) {
+
+        final String REG_ADD = "ADD\\s+\\d*+\\s*+.+";
 
 
-                    String addStringNumber = input.trim().replaceAll("[^0-9]", "");
+        if (add.matches(REG_ADD)) {
 
-                    if (addStringNumber.length() > 0) {
-                        int number = Integer.parseInt(addStringNumber);
+            String[] array = add.split("\\s", 3);
 
-                        if (number > list.size()) {
-                            number = list.size();
-                            list.add(number, input);
-                            System.out.println("Позиция добавлена");
-                        } else {
-                            list.add(number, input);
-                            System.out.println("Позиция добавлена");
-                        }
+            String addStringNumber = array[1].replaceAll("[^0-9]", "");
+            boolean boolStr = addStringNumber.length() > 0;
 
-                    } else {
-                        list.add(input);
-                        System.out.println("Позиция добавлена");
-                    }
+            if (addStringNumber.length() > 0 && array.length == 3) {
+                int number = Integer.parseInt(addStringNumber);
+                String arrayTwo = array[2];
 
-                } else if (input.equals(LIST)) {
-                    int p = 0;
-                    for (String print : list) {
-                        p++;
-                        System.out.println(p + "-" + print);
-
-                    }
-
-
-                    /////////////////////*///////////////////////////
-                } else if (input.subSequence(0, EDIT.length()).equals(EDIT)) {
-
-                    String editNumderString = input.trim().replaceAll("[^0-9]", "");
-
-                    if (editNumderString.length() > 0) {
-
-                        int intEdit = Integer.parseInt(editNumderString);
-
-                        if (intEdit > list.size()) {
-
-                            intEdit = list.size() - 1;
-
-                            list.set(intEdit, input);
-                            System.out.println("Изменения внесены!");
-
-                        } else {
-                            list.set(intEdit, input);
-                            System.out.println("Изменения внесены!");
-                        }
-
-                    } else {
-
-                        System.out.println("Укажите номер  позиции, которую необходимо отредактировать!");
-                    }
-
-
-                } else if (input.subSequence(0, DELETE.length()).equals(DELETE)) {
-
-                    String deleteNumderString = input.trim().replaceAll("[^0-9]", "");
-
-                    if (deleteNumderString.length() > 0) {
-
-                        int deleteNumderInt = Integer.parseInt(deleteNumderString);
-
-                        if (deleteNumderInt > list.size()) {
-
-                            deleteNumderInt = list.size() - 1;
-                            list.remove(deleteNumderInt);
-                            System.out.println("Удалена последняя позиция!");
-
-                        } else {
-                            list.remove(deleteNumderInt);
-
-                            System.out.println("Позиция удалена!");
-                        }
-
-                    } else {
-                        list.clear();
-                        System.out.println("Список очищен!");
-                    }
-
-
+                if (number > list.size()) {
+                    number = list.size();
+                    list.add(number, arrayTwo);
+                    System.out.println("Позиция добавлена в конец списка");
+                } else {
+                    list.add(number, arrayTwo);
+                    System.out.println("Позиция добавлена");
                 }
 
-            }else {
-                System.out.println("Введите данные!");
+            } else if (array.length == 3) {
+                String arrayOne = array[1];
+                String arrayTwo = array[2];
+                list.add(arrayOne + arrayTwo);
+                System.out.println("Позиция добавлена");
+
+            } else {
+                String arrayOne = array[1];
+
+                list.add(arrayOne);
+                System.out.println("Позиция добавлена");
             }
-        }
 
         }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    }
+
+    private static void editeIndex(String edite, ArrayList<String> list) {
+
+        final String REG_EDITE = "EDITE\\s+\\d+\\s+.+";
+
+        if (edite.matches(REG_EDITE)) {
+
+            String[] editeArray = edite.split("\\s");
+
+            String editNumderString = editeArray[1].trim().replaceAll("[^0-9]", "");
+            int intEdit = Integer.parseInt(editNumderString);
+
+            if (intEdit <= list.size()) {
+                list.set(intEdit, editeArray[2]);
+                System.out.println("Изменения внесены!");
+            } else {
+                System.out.println("Вы указали не существующий номер позиции! На данный момент в списке :" + list.size() + " - позиций.");
+            }
+
+        }
+
+
+    }
+
+    // private void addIndex (String add,int index ){
+    private static void deleteIndex(String delete, ArrayList<String> list) {
+        final String REG_DELETE = "DELETE\\s*+\\d*+\\s*+";
+
+        if (delete.matches(REG_DELETE)) {
+
+            String[] arrayDelete = delete.split("\\s");
+
+            if (arrayDelete.length == 2) {
+                String deleteNumderString = arrayDelete[1].replaceAll("[^0-9]", "");
+
+                int deleteNumderInt = Integer.parseInt(deleteNumderString);
+                if (deleteNumderInt <= list.size() && list.size() > 0) {
+
+                    list.remove(deleteNumderInt);
+                    System.out.println("Позиция удалена!");
+
+                } else {
+                    System.out.println("Вы пытаетесь удалить не существующую позицию в списке!");
+                }
+
+            } else if (list.size() != 0) {
+                list.clear();
+                System.out.println("Список очищен!");
+            } else {
+                System.out.println("Вы пытаетесь удалить не существующий список!");
+            }
+
+
+        }
+
+
+    }
+
+    private static void listIndex(String listInput, ArrayList<String> list) {
+        final String REG_LIST = "LIST";
+
+        if (listInput.matches(REG_LIST)) {
+
+            int p = 0;
+            for (String print : list) {
+                p++;
+                System.out.println(p + "-" + print);
+            }
+
+        }
+
+    }
 }
+
+
