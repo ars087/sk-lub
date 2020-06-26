@@ -3,9 +3,20 @@ import java.util.Scanner;
 
 public class Task_5_2_1 {
 
+
+    private static final  String REG_ADD = "ADD\\s+\\d*+\\s*+.+";
+    private static final String REG_EDIT = "EDITE\\s+\\d+\\s+.+";
+    private static final String REG_DELETE = "DELETE\\s*+\\d*+\\s*+";
+    private static final String REG_LIST = "LIST";
+
+
+   private static  ArrayList<String> list = new ArrayList<>();
+
+
+
     public static void main(String[] args) {
 
-            ArrayList<String> list = new ArrayList<>();
+
 
         for (; ; ) {
             System.out.println( "\t \t \t Для внесения изменений в список используйте следующие ключевые слова," + "\n"
@@ -13,10 +24,10 @@ public class Task_5_2_1 {
 
             String input = new Scanner(System.in).nextLine();
 
-            addIndex(input, list);
-            editeIndex(input, list);
-            deleteIndex(input, list);
-            listIndex( input,list);
+            addIndex(input);
+            editeIndex(input);
+            deleteIndex(input);
+            listIndex(input);
 
             if (list.size() == 0) {
 
@@ -28,67 +39,64 @@ public class Task_5_2_1 {
 
         }
 
-    } //// бесконечный цикл
+    }
 
-    ////////////////////////////////Метод ADD///////////////////////////////////////////////
-    private static void addIndex(String add, ArrayList<String> list) {
 
-        final String REG_ADD = "ADD\\s+\\d*+\\s*+.+";
+    private static void addIndex(String add) {
+
+
 
         if (add.matches(REG_ADD)) {
 
-            String[] array = add.split("\\s", 3);
+            String[] addArray = add.split("\\s", 3);
 
-            String addStringNumber = array[1].replaceAll("[^0-9]", "");
-            boolean boolStr = addStringNumber.length() > 0;
+            String replaceAll = addArray[1].replaceAll("[^0-9]","");
 
-            if (addStringNumber.length() > 0 && array.length == 3) {
-                int number = Integer.parseInt(addStringNumber);
-                String arrayTwo = array[2];
+            if (replaceAll.length() > 0 && addArray.length == 3) {
+                int number = Integer.parseInt(replaceAll);
+                String todoText = addArray[2];
 
-                if (number > list.size()) {
-                    number = list.size();
-                    list.add(number, arrayTwo);
-                    System.out.println("Позиция добавлена в конец списка");
+                if (number > list.size() && list.size() > 0 ) {
+                    list.add(todoText);
+                    System.out.println("Позиция будет  добавлена в конец списка");
+                } else if ( (number > list.size() && list.size() == 0 )){
+                    list.add(todoText);
+                    System.out.println("Позиция добавлена!");
+
                 } else {
-                    list.add(number, arrayTwo);
-                    System.out.println("Позиция добавлена");
+                    list.add(number,todoText);
+                    System.out.println("Позиция добавлена!");
                 }
 
-
-
-            } else if (array.length == 3) {
-                String arrayOne = array[1];
-                String arrayTwo = array[2];
-                list.add(arrayOne + arrayTwo);
+            } else if (addArray.length == 3) {
+                String todoText = addArray[1];
+                String todoTextSecond = addArray[2];
+                list.add(todoText +" "+ todoTextSecond);
                 System.out.println("Позиция добавлена");
 
             } else {
-                String arrayOne = array[1];
+               String todoText = addArray[1];
 
-                list.add(arrayOne);
+                list.add(todoText);
                 System.out.println("Позиция добавлена");
             }
 
         }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     }
 
-    private static void editeIndex(String edite, ArrayList<String> list) {
+    private static void editeIndex(String edite) {
 
-        final String REG_EDITE = "EDITE\\s+\\d+\\s+.+";
 
-        if (edite.matches(REG_EDITE)) {
+        if (edite.matches(REG_EDIT)) {
 
             String[] editeArray = edite.split("\\s");
 
-            String editNumderString = editeArray[1].trim().replaceAll("[^0-9]", "");
-            int intEdit = Integer.parseInt(editNumderString);
+            String replaceAll = editeArray[1].trim().replaceAll("[^0-9]", "");
+            int number = Integer.parseInt(replaceAll);
 
-            if (intEdit <= list.size()) {
-                list.set(intEdit, editeArray[2]);
+            if (number <= list.size()) {
+                list.set(number, editeArray[2]);
                 System.out.println("Изменения внесены!");
             } else {
                 System.out.println("Вы указали не существующий номер позиции! На данный момент в списке :" + list.size() + " - позиций.");
@@ -99,20 +107,19 @@ public class Task_5_2_1 {
 
     }
 
-    private static void deleteIndex(String delete, ArrayList<String> list) {
-        final String REG_DELETE = "DELETE\\s*+\\d*+\\s*+";
+    private static void deleteIndex(String delete) {
 
         if (delete.matches(REG_DELETE)) {
 
-            String[] arrayDelete = delete.split("\\s");
+            String[] deleteArray = delete.split("\\s");
 
-            if (arrayDelete.length == 2) {
-                String deleteNumderString = arrayDelete[1].replaceAll("[^0-9]", "");
+            if (deleteArray.length == 2) {
+                String replaceAll = deleteArray[1].replaceAll("[^0-9]", "");
 
-                int deleteNumderInt = Integer.parseInt(deleteNumderString);
-                if (deleteNumderInt <= list.size() && list.size() > 0) {
+                int number = Integer.parseInt(replaceAll);
+                if (number <= list.size() && list.size() > 0) {
 
-                    list.remove(deleteNumderInt);
+                    list.remove(number);
                     System.out.println("Позиция удалена!");
 
                 } else {
@@ -132,15 +139,15 @@ public class Task_5_2_1 {
 
     }
 
-    private static void listIndex(String listInput, ArrayList<String> list) {
-        final String REG_LIST = "LIST";
+    private static void listIndex(String listInput) {
+
 
         if (listInput.matches(REG_LIST)) {
 
-            int p = 0;
-            for (String print : list) {
-                p++;
-                System.out.println(p + "-" + print);
+
+            for ( int i = 0; i < list.size();i++) {
+
+                System.out.println(  i + 1 + ")"+ list.get(i));
             }
 
         }
