@@ -4,15 +4,19 @@ public class Maine {
     public static void main(String[] args) {
 
         BankAccount bankAccount = new BankAccount();
+        bankAccount.put(1);
         bankAccount.put(10);
 
         DepositAccount depositAccount = new DepositAccount();
-        bankAccount.send(depositAccount, 10);
+        depositAccount.put(5);
+        depositAccount.take(1);
 
-        System.out.println(bankAccount.getAmount());
-        System.out.println(depositAccount.getAmount());
+        CardAccount cardAccount = new CardAccount();
+        depositAccount.send(cardAccount,2);
 
-        depositAccount.put(12);
+         // cardAccount.put(1);
+        //cardAccount.send(depositAccount, 10);
+
 
     }
 }

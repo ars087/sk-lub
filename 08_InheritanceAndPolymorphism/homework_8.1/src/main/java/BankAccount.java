@@ -1,52 +1,44 @@
 public class BankAccount {
 
-  protected double invoice = 0; //ljojoioj
+    private double invoice = 0;
 
-  public double getAmount() {
-    return invoice;
-  }
-
-  protected void put(double amountToPut) {
-
-    if (amountToPut > 0) {
-
-      invoice += amountToPut;
-      System.out.println("Счет пополнен на сумму :" + amountToPut);
-
-    } else {
-      System.out.println("Пополнить счет  не удалось. Сумма пополнения не может быть отрицательной!");
+    protected double getAmount() {
+        return invoice;
     }
-  }
-  public boolean take(double amountToTake) {
 
-    boolean successfully;
+    protected void put(double amountToPut) {
 
-    if (amountToTake > invoice) {
-      System.out.println("На счету недостаточно средств.Измените значение суммы списания");
-      successfully = false;
+        if (amountToPut > 0) {
+            invoice += amountToPut;
+            System.out.println("Счет пополнен на сумму :" + amountToPut + "р.");
+            System.out.println("Баланс счета :" + getAmount() + "р.");
+        } else {
+            System.out.println("Пополнить счет не удалось. Сумма пополнения не может быть отрицательной!");
 
-    } else if (amountToTake < 0) {
-      System.out.println("Сумма не должна быть отрицательной");
-      successfully = false;
-    } else {
-      invoice -= amountToTake;
-      System.out.println("Средства списаны!");
-      successfully = true;
+        }
     }
-    return successfully;
-  }
-  protected boolean send(BankAccount receiver, double amount) { //;lk;lk
 
-    boolean successfully;
-    if ( amount != 0 && amount > 0 && amount <= invoice ) {
-      invoice -= amount;
-      receiver.put(amount);
-      System.out.println(" Перевод между счетами успешно завершен.");
-      successfully = true;
-    } else {
-      System.out.println("Значение суммы указанно с ошибкой,либо сумма перевода больше средств на счету.");
-      successfully = false;
+    protected boolean take(double amountToTake) {
+
+        if (amountToTake != 0 && amountToTake > 0 && amountToTake <= invoice) {
+            invoice -= amountToTake;
+            System.out.println("Сумма списана в размере :" + amountToTake + "р.");
+            System.out.println("Баланс счета :" + getAmount() + "р.");
+            return true;
+        } else {
+            System.out.println("Сумма перевода не должна быть отрицательной или превышающей сумму на счету.");
+
+            return false;
+        }
     }
-    return successfully;
-  }
+
+    protected boolean send(BankAccount receiver, double amount) {
+
+        if (take(amount)) {
+            receiver.put(amount);
+            System.out.println("Перевод между счетами успешно завершен.");
+            return true;
+        }
+        return false;
+    }
 }
