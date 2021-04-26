@@ -8,14 +8,12 @@ public class BankAccount {
 
     protected void put(double amountToPut) {
 
-
         if (amountToPut > 0) {
             invoice += amountToPut;
             System.out.println("Счет пополнен на сумму :" + amountToPut + "р.");
             System.out.println("Баланс счета :" + getAmount() + "р.");
         } else {
             System.out.println("Пополнить счет не удалось. Сумма пополнения не может быть отрицательной!");
-
         }
     }
 
@@ -28,7 +26,6 @@ public class BankAccount {
             return true;
         } else {
             System.out.println("Сумма перевода не должна быть отрицательной или превышающей сумму на счету.");
-
             return false;
         }
     }
