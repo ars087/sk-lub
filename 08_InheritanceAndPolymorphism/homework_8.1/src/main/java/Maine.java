@@ -12,11 +12,7 @@ public class Maine {
         depositAccount.take(1);
 
         CardAccount cardAccount = new CardAccount();
-        depositAccount.send(cardAccount,2);
-
-         // cardAccount.put(1);
-        //cardAccount.send(depositAccount, 10);
-
+        depositAccount.send(cardAccount, 2);
 
     }
 }

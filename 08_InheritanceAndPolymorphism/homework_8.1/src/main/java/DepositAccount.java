@@ -9,7 +9,6 @@ public class DepositAccount extends BankAccount {
         lastIncome = LocalDate.now();
         // lastIncome = LocalDate.of(2021, 3, 24);
         super.put(amountToPut);
-
     }
 
     @Override
@@ -19,7 +18,6 @@ public class DepositAccount extends BankAccount {
             System.out.println("Пополните счет. Отсутствуют средства.");
             return false;
         }
-
         LocalDate localDate = lastIncome.plusMonths(1);
         LocalDate localDate1 = LocalDate.now();
 

@@ -1,6 +1,4 @@
 public class CardAccount extends BankAccount {
-
-
     @Override
     protected boolean take(double amountToTake) {
 
@@ -10,7 +8,6 @@ public class CardAccount extends BankAccount {
             System.out.println("Комиссия за перевод составила :" + commission + "р.");
             return true;
         }
-
         return false;
     }
 

@@ -8,6 +8,7 @@ public class BankAccount {
 
     protected void put(double amountToPut) {
 
+
         if (amountToPut > 0) {
             invoice += amountToPut;
             System.out.println("Счет пополнен на сумму :" + amountToPut + "р.");
