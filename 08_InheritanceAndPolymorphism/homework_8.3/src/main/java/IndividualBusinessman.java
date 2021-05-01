@@ -6,28 +6,31 @@ public class IndividualBusinessman extends Client {
     @Override
     public boolean put(double amountToPut) {
 
+        double commissionForReplenishment;
+
         if (amountToPut < MINIMUM_AMOUNT) {
 
-            double commissionFromReplenishment = amountToPut * MAXIMUM_COMMISSION;
-            double commissionWithAmount = amountToPut - commissionFromReplenishment;
-            super.put(commissionWithAmount);
-            System.out.println("Комиссия пополнения составила" + commissionFromReplenishment + "рублей");
-            return true;
+            commissionForReplenishment = amountToPut * MAXIMUM_COMMISSION;
+            amountToPut = amountToPut - commissionForReplenishment;
+           if( super.put(amountToPut)) {
+               System.out.println("Комиссия пополнения составила" + commissionForReplenishment + "рублей");
+               return true;
+           }
+           return false;
         } else if (amountToPut >= MINIMUM_AMOUNT) {
 
-            double commissionFromReplenishment = amountToPut * MINIMUM_COMMISSION;
-            double commissionWithAmount = amountToPut - commissionFromReplenishment;
-            super.put(commissionWithAmount);
-            System.out.println("Комиссия пополнения составила" + commissionFromReplenishment + "рублей");
+            commissionForReplenishment = amountToPut * MINIMUM_COMMISSION;
+            amountToPut = amountToPut - commissionForReplenishment;
+            super.put(amountToPut);
+            System.out.println("Комиссия пополнения составила" + commissionForReplenishment + "рублей");
             return true;
-
 
         }
         return false;
     }
 
     @Override
-    public void bankСonditions() {
+    public void conditions() {
 
         System.out.println("Счет индивидуального предпринимаателя.\n" +
                 "Комиссия за пополнение составляет 1% от суммы, если сумма пополнения меньше 1000рублей и\n" +

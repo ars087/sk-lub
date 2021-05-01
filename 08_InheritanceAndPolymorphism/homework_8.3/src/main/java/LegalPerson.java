@@ -17,7 +17,7 @@ public class LegalPerson extends Client {
     }
 
     @Override
-    public void bankСonditions() {
+    public void conditions() {
         System.out.println("Счет юридического лица.\n" +
                 "Комиссия за пополнение отсутствует.\n " +
                 "Размер комиссии  составляет 1% от суммы списания.");
