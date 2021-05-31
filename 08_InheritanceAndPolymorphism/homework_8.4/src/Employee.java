@@ -1,0 +1,7 @@
+interface Employee {
+
+
+    double getMonthSalary();
+
+
+}
