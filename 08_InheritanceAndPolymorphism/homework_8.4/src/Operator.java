@@ -52,6 +52,24 @@ public class Operator extends Profession {
     }
 
     @Override
+    public double getProfitForCompany() {
+
+        int profit = 0;
+
+        for (Employee employee :company.employeeAll) {
+
+            if (employee instanceof Operator) {
+
+                profit += employee.getMonthSalary();
+
+            }
+
+        }
+
+        return profit;
+    }
+
+    @Override
     public int compareTo(Employee employee) {
 
         if (getMonthSalary() > employee.getMonthSalary()) {

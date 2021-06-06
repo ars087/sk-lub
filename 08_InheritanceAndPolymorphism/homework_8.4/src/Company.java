@@ -1,7 +1,7 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Company {
 
@@ -14,14 +14,15 @@ public class Company {
 
 
     // public final ArrayList<Employee> COMPANY_EMPLOYEES = new ArrayList<>();
-    public ArrayList<Employee> employeeArrayList = new ArrayList<>();
+    public ArrayList<Employee> employeeAll = new ArrayList<>();
 
     private double incomeCompany;  //сумма  дохода компании
 
 
     public int getSizeAllEmployee() {
 
-        return employeeArrayList.size();
+
+        return employeeAll.size();
     }
 
 
@@ -39,7 +40,7 @@ public class Company {
 
 
     public void printArrayList() {
-        for (Employee arrayList1 : employeeArrayList) {
+        for (Employee arrayList1 : employeeAll) {
 
             System.out.println(arrayList1.getMonthSalary());
         }
@@ -55,14 +56,14 @@ public class Company {
 
     public void fire(int count) {
 
-        if (count <= employeeArrayList.size() && count > 0) {
-            int i = employeeArrayList.size();
+        if (count <= employeeAll.size() && count > 0) {
+            int i = employeeAll.size();
             int size = i;
 
             for (; size < i + count; i--) {
 
 
-                employeeArrayList.remove(i - 1);
+                employeeAll.remove(i - 1);
 
             }
 
@@ -76,7 +77,7 @@ public class Company {
     public void hire(Employee employee) {
 
 
-        employeeArrayList.add(employee);
+        employeeAll.add(employee);
 
 
     }
@@ -84,7 +85,7 @@ public class Company {
 
     public void hireALL(ArrayList<Employee> employee) {
 
-        employeeArrayList.addAll(employee);
+        employeeAll.addAll(employee);
 
     }
 
@@ -92,28 +93,14 @@ public class Company {
     public List<Employee> getTopSalaryStaff(int count) {
 
 
-        Collections.sort(employeeArrayList, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-
-                if (o1.getMonthSalary() > o2.getMonthSalary()) {
-
-                    return -1;
-                }
-                if (o1.getMonthSalary() < o2.getMonthSalary()) {
-
-                    return 1;
-                }
+        employeeAll.sort(Comparator.comparingDouble(Employee::getMonthSalary));
 
 
-                return 0;
-            }
-        });
 
         List<Employee> clonedList = null;
-        if (employeeArrayList.size() >= count) {
+        if (employeeAll.size() >= count) {
 
-            clonedList = employeeArrayList.subList(0, count);
+            clonedList = employeeAll.subList(0, count);
 
         } else {
             System.out.println("Указанная величина превышет размер имеющегося списка");
@@ -126,28 +113,24 @@ public class Company {
 
     public List<Employee> getLowestSalaryStaff(int count) {
 
-        Collections.sort(employeeArrayList, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-
-                if (o1.getMonthSalary() > o2.getMonthSalary()) {
-
-                    return 1;
-                }
-                if (o1.getMonthSalary() < o2.getMonthSalary()) {
-
-                    return -1;
-                }
 
 
-                return 0;
-            }
-        });
+
+
+        Comparator <Employee> comparator = (e1, e2 ) -> (int) (e1.getMonthSalary() -e2.getMonthSalary());
+        employeeAll.sort(comparator.reversed());
+
+      //      List <Employee>test = (List<Employee>) employeeAll.stream()
+
+        // filter(employee -> employee.   =count)
+                  //.distinct()
+
+
 
         List<Employee> clonedList = null;
-        if (employeeArrayList.size() >= count) {
+        if (employeeAll.size() >= count) {
 
-            clonedList = employeeArrayList.subList(0, count);
+            clonedList = employeeAll.subList(0, count);
 
         } else {
             System.out.println("Указанная величина превышет размер имеющегося списка");
@@ -156,6 +139,9 @@ public class Company {
         return clonedList;
 
     }
+
+
+
 
 }
 

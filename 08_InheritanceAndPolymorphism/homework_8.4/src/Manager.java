@@ -41,10 +41,37 @@ public class Manager extends Profession {
         return obj != null && getClass() == obj.getClass();
     }
 
+
+
+
+
+
     @Override
     public double getMonthSalary() {
         return super.getMonthSalary();
     }
+
+    @Override
+
+
+    public double getProfitForCompany() {
+
+        int profit = 0;
+
+        for (Employee employee : company.employeeAll) {
+
+            if (employee instanceof Manager) {
+
+                profit += employee.getMonthSalary();
+
+            }
+        }
+
+        return profit;
+    }
+
+
+
 
     @Override
     public int compareTo(Employee employee) {

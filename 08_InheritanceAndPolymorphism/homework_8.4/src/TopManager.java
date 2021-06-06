@@ -22,6 +22,24 @@ public class TopManager extends Profession {
     }
 
     @Override
+    public double getProfitForCompany() {
+
+        int profit = 0;
+
+         for (Employee employee : company.employeeAll) {
+
+            if (employee instanceof  TopManager ) {
+
+                profit +=employee.getMonthSalary();
+
+            }
+
+        }
+
+        return profit;
+    }
+
+    @Override
     public void termsOfWages() {
         if (company.getIncome() > HIGH_COMPANY_INCOME) {
             System.out.println(company.getIncome());

@@ -24,9 +24,9 @@ public class Maine {
         Maine maine = new Maine();
         Maine maine1 = new Maine();
 
-        maine.addEmployee(company, operator, 180);
-        maine.addEmployee(company, manager, 80);
-        maine.addEmployee(company, topManager, 10);
+        maine.addEmployee(company, operator, 15);
+        maine.addEmployee(company, manager, 10);
+       maine.addEmployee(company, topManager, 1);
 
 
         company.hireALL(maine.COMPANY_EMPLOYEES);
@@ -37,31 +37,26 @@ public class Maine {
         System.out.println(company1.getIncome());
 
 
+
         System.out.println(company.getSizeAllEmployee());
 
         System.out.println(company1.getSizeAllEmployee());
 
-        List<Employee> list1 = company.getTopSalaryStaff(10);
-
-        for (Employee employee : list1) {
-
-            System.out.println(employee);
-
-        }
+        System.out.println(topManager.getProfitForCompany());
 
 
-        company.fire(135);
+       // System.out.println(manager.getProfitForCompany());
+
+        // List<Employee> list = company.getLowestSalaryStaff(100);
+        // List<Employee> list = company.getTopSalaryStaff(100);
+
+
+       // list.forEach(System.out::println);
+
+
+        //  company.fire(135);
 
         System.out.println(company.getSizeAllEmployee());
-
-        List<Employee> list = company.getLowestSalaryStaff(30);
-
-
-        for (Employee employee : list) {
-
-            System.out.println(employee);
-
-        }
 
 
     }
