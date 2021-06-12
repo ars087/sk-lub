@@ -19,10 +19,10 @@ public class Operator extends Profession {
 
     @Override
     public void termsOfWages() {
-        if (company.getIncome() > 0) {
+        if (company.getIncomeCompany() > 0) {
+
 
             setMonthSalary(FIXED_SALARY_OPERATOR);
-            // System.out.println("Оклад оператора сформирован");
 
 
         }
@@ -44,43 +44,18 @@ public class Operator extends Profession {
 
     @Override
     public double getMonthSalary() {
-
+        company.setIncomeCompany(company.getIncomeCompany() - super.getMonthSalary());
 
         return super.getMonthSalary();
 
 
     }
 
-    @Override
-    public double getProfitForCompany() {
-
-        int profit = 0;
-
-        for (Employee employee :company.employeeAll) {
-
-            if (employee instanceof Operator) {
-
-                profit += employee.getMonthSalary();
-
-            }
-
-        }
-
-        return profit;
-    }
 
     @Override
     public int compareTo(Employee employee) {
 
-        if (getMonthSalary() > employee.getMonthSalary()) {
-
-            return 1;
-        }
-
-        if (getMonthSalary() < employee.getMonthSalary()) return -1;
-
-
-        return 0;
+        return Double.compare(getMonthSalary(), employee.getMonthSalary());
 
 
     }

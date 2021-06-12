@@ -1,17 +1,24 @@
 public class Manager extends Profession {
 
+    int numberOfdays;
+
     Manager(Company company) {
         super(company);
+        this.numberOfdays = company.numberOfdays;
         termsOfWages();
+
     }
 
 
     public void termsOfWages() {
-        if (company.getIncome() > 0) {
-            // System.out.println(company.getIncome());
-            setBonusSalary((company.getIncome() * MANAGER_BONUS_PERCENTAGE) / DIVIDEND_NUMBER);
-            // System.out.println("Бонус менеджера составляет" + getBonusSalary());
+
+        if (company.getIncomeCompany() > 0) {
+            double managerBonus = (getProfitForCompany() * MANAGER_BONUS_PERCENTAGE) / ONE_HUNDRED_PERCENT;
+            setBonusSalary(managerBonus);
+
+
             setMonthSalary(getBonusSalary() + FIXED_SALARY_MANAGER);
+
 
         } else {
             setMonthSalary(FIXED_SALARY_MANAGER);
@@ -25,7 +32,6 @@ public class Manager extends Profession {
     public String toString() {
 
         return String.valueOf(getMonthSalary());
-
 
     }
 
@@ -42,49 +48,36 @@ public class Manager extends Profession {
     }
 
 
-
-
-
-
     @Override
     public double getMonthSalary() {
+
+        company.setIncomeCompany(company.getIncomeCompany() - super.getMonthSalary());
         return super.getMonthSalary();
     }
-
-    @Override
 
 
     public double getProfitForCompany() {
 
-        int profit = 0;
+        double profit = 0;
+        if (numberOfdays >= 0) {
 
-        for (Employee employee : company.employeeAll) {
+            for (int i = 0; i < numberOfdays; i++) {
 
-            if (employee instanceof Manager) {
-
-                profit += employee.getMonthSalary();
-
+                profit += 115000 + (int) (Math.random() * 25000);
             }
+
+
         }
+
 
         return profit;
     }
 
 
-
-
     @Override
     public int compareTo(Employee employee) {
 
-        if (getMonthSalary() > employee.getMonthSalary()) {
-
-            return 1;
-        }
-
-        if (getMonthSalary() < employee.getMonthSalary()) return -1;
-
-
-        return 0;
+        return Double.compare(getMonthSalary(), employee.getMonthSalary());
 
 
     }

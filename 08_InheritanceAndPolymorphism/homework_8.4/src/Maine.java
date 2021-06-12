@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Maine {
 
@@ -8,9 +7,7 @@ public class Maine {
 
     public static void main(String[] args) {
 
-        Company company = new Company(30);
-
-        Company company1 = new Company(10);
+        Company company = new Company(1);
 
 
         Operator operator = new Operator(company);
@@ -19,44 +16,19 @@ public class Maine {
         Manager manager = new Manager(company);
 
 
-        TopManager topManager = new TopManager(company);
-
         Maine maine = new Maine();
         Maine maine1 = new Maine();
 
-        maine.addEmployee(company, operator, 15);
-        maine.addEmployee(company, manager, 10);
-       maine.addEmployee(company, topManager, 1);
 
+        System.out.println(company.getIncomeCompany());
+
+        TopManager topManager = new TopManager(company);
+
+        //   maine.addEmployee(company, topManager, 15);
+        //   maine.addEmployee(company, operator, 15);
+        maine.addEmployee(company, manager, 23);
 
         company.hireALL(maine.COMPANY_EMPLOYEES);
-        company1.hireALL(maine1.COMPANY_EMPLOYEES);
-
-
-        System.out.println(company.getIncome());
-        System.out.println(company1.getIncome());
-
-
-
-        System.out.println(company.getSizeAllEmployee());
-
-        System.out.println(company1.getSizeAllEmployee());
-
-        System.out.println(topManager.getProfitForCompany());
-
-
-       // System.out.println(manager.getProfitForCompany());
-
-        // List<Employee> list = company.getLowestSalaryStaff(100);
-        // List<Employee> list = company.getTopSalaryStaff(100);
-
-
-       // list.forEach(System.out::println);
-
-
-        //  company.fire(135);
-
-        System.out.println(company.getSizeAllEmployee());
 
 
     }

@@ -7,53 +7,36 @@ public class TopManager extends Profession {
 
     }
 
-
     @Override
     public String toString() {
 
         return String.valueOf(getMonthSalary());
 
-
-    }
-
-    @Override
-    public double getMonthSalary() {
-        return super.getMonthSalary();
-    }
-
-    @Override
-    public double getProfitForCompany() {
-
-        int profit = 0;
-
-         for (Employee employee : company.employeeAll) {
-
-            if (employee instanceof  TopManager ) {
-
-                profit +=employee.getMonthSalary();
-
-            }
-
-        }
-
-        return profit;
     }
 
     @Override
     public void termsOfWages() {
-        if (company.getIncome() > HIGH_COMPANY_INCOME) {
-            System.out.println(company.getIncome());
-            setBonusSalary(FIXED_SALARY_TOPMANAGER * TOP_MANAGER_BONUS_PERCENTAGE / DIVIDEND_NUMBER);
-            // System.out.println("Бонус Топменеджера составляет" + getBonusSalary());
+        if (company.getIncomeCompany() > HIGH_COMPANY_INCOME) {
+            System.out.println(company.getIncomeCompany());
+            setBonusSalary((FIXED_SALARY_TOPMANAGER * TOP_MANAGER_BONUS_PERCENTAGE) / ONE_HUNDRED_PERCENT);
             setMonthSalary(getBonusSalary() + FIXED_SALARY_TOPMANAGER);
+
 
         } else {
             setMonthSalary(FIXED_SALARY_TOPMANAGER);
-            //System.out.println("Бонус в этом месяце отсутствует");
 
 
         }
     }
+
+
+    @Override
+    public double getMonthSalary() {
+
+        company.setIncomeCompany(company.getIncomeCompany() - super.getMonthSalary());
+        return super.getMonthSalary();
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -69,14 +52,8 @@ public class TopManager extends Profession {
 
     @Override
     public int compareTo(Employee employee) {
-        if (getMonthSalary() > employee.getMonthSalary()) {
-
-            return 1;
-        }
-
-        if (getMonthSalary() < employee.getMonthSalary()) return -1;
+        return Double.compare(getMonthSalary(), employee.getMonthSalary());
 
 
-        return 0;
     }
 }

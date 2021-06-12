@@ -1,37 +1,48 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Company {
 
 
-    Company(int count) {
+    public ArrayList<Employee> employeeAll = new ArrayList<>();
 
-        generatingIncome(count);
+
+    private double incomeCompany;
+    int numberOfdays;
+
+
+    Company(int numberOfdays) {
+        generatingIncome(numberOfdays);
+        this.numberOfdays = numberOfdays;
 
     }
 
+    public void setIncomeCompany(double incomeCompany) {
+        this.incomeCompany = incomeCompany;
 
-    // public final ArrayList<Employee> COMPANY_EMPLOYEES = new ArrayList<>();
-    public ArrayList<Employee> employeeAll = new ArrayList<>();
 
-    private double incomeCompany;  //сумма  дохода компании
-
+    }
 
     public int getSizeAllEmployee() {
-
-
         return employeeAll.size();
     }
 
 
-    public void generatingIncome(int day) {
+//    public double getIncomeCompany() {
+//
+//        return incomeCompany;
+//    }
 
-        if (day > 0) {
 
-            for (int i = 0; i < day; i++) {
-                incomeCompany += 115000 + (int) (Math.random() * 25001);// ;
+    public void generatingIncome(int numberOfdays) {
+
+        if (numberOfdays > 0) {
+
+            for (int i = 0; i < numberOfdays; i++) {
+                incomeCompany += 50000 + (int) (Math.random() * 25000);
+
+
             }
         } else {
             System.out.println("Укажите верное  количество дней работы компании");
@@ -48,9 +59,21 @@ public class Company {
     }
 
 
-    public double getIncome() {
+    public double getIncomeCompany() {
 
-        return incomeCompany;
+        int profit = 0;
+        for (Employee employee : employeeAll) {
+
+            if (employee instanceof Manager) {
+
+                profit += ((Manager) employee).getProfitForCompany();
+
+            }
+
+        }
+
+
+        return incomeCompany += profit;
     }
 
 
@@ -96,7 +119,6 @@ public class Company {
         employeeAll.sort(Comparator.comparingDouble(Employee::getMonthSalary));
 
 
-
         List<Employee> clonedList = null;
         if (employeeAll.size() >= count) {
 
@@ -114,17 +136,13 @@ public class Company {
     public List<Employee> getLowestSalaryStaff(int count) {
 
 
-
-
-
-        Comparator <Employee> comparator = (e1, e2 ) -> (int) (e1.getMonthSalary() -e2.getMonthSalary());
+        Comparator<Employee> comparator = (e1, e2) -> (int) (e1.getMonthSalary() - e2.getMonthSalary());
         employeeAll.sort(comparator.reversed());
 
-      //      List <Employee>test = (List<Employee>) employeeAll.stream()
+        //      List <Employee>test = (List<Employee>) employeeAll.stream()
 
         // filter(employee -> employee.   =count)
-                  //.distinct()
-
+        //.distinct()
 
 
         List<Employee> clonedList = null;
@@ -139,8 +157,6 @@ public class Company {
         return clonedList;
 
     }
-
-
 
 
 }
