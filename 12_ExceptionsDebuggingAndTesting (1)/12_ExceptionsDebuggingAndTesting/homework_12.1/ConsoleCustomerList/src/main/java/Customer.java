@@ -8,6 +8,7 @@ public class Customer {
         this.phone = phone;
         this.email = email;
     }
+
     public String getName() {
         return name;
     }
@@ -19,7 +20,6 @@ public class Customer {
     public String getEmail() {
         return email;
     }
-
 
 
     public String toString() {

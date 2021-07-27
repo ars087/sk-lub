@@ -16,11 +16,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CustomerStorage executor = new CustomerStorage();
 
-        try {
-            while (true) {
-                String command = scanner.nextLine();
-                String[] tokens = command.split("\\s+", 2);
 
+        while (true) {
+            String command = scanner.nextLine();
+            String[] tokens = command.split("\\s+", 2);
+
+            try {
                 if (tokens[0].equals("add")) {
                     executor.addCustomer(tokens[1]);
                 } else if (tokens[0].equals("list")) {
@@ -34,12 +35,13 @@ public class Main {
                 } else {
                     System.out.println(COMMAND_ERROR);
                 }
-            }
-        } catch (RuntimeException ex) {
-            ex.getCause();
+            } catch (RuntimeException ex) {
+                System.out.println(ex + "Ошибка ввода данных!");
 
+            }
 
         }
+
     }
 
 }

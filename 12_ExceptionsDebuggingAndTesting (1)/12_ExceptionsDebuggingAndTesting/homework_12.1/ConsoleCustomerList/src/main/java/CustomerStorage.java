@@ -8,7 +8,7 @@ public class CustomerStorage {
         storage = new HashMap<>();
     }
 
-    public void addCustomer(String data)  {
+    public void addCustomer(String data) {
         final int INDEX_NAME = 0;
         final int INDEX_SURNAME = 1;
         final int INDEX_EMAIL = 2;
@@ -54,7 +54,13 @@ public class CustomerStorage {
     }
 
     public void removeCustomer(String name) {
-        storage.remove(name);
+        if (getCount() == 0) {
+            throw new RuntimeException();
+
+        } else {
+            storage.remove(name);
+        }
+
     }
 
     public Customer getCustomer(String name) {
