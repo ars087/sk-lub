@@ -6,7 +6,7 @@ public class BankAccount {
         return invoice;
     }
 
-    protected void put(double amountToPut) {
+  public   void put(double amountToPut) {
 
         if (amountToPut > 0) {
             invoice += amountToPut;
@@ -17,7 +17,7 @@ public class BankAccount {
         }
     }
 
-    protected boolean take(double amountToTake) {
+    public boolean take(double amountToTake) {
 
         if (amountToTake != 0 && amountToTake > 0 && amountToTake <= invoice) {
             invoice -= amountToTake;
@@ -30,11 +30,11 @@ public class BankAccount {
         }
     }
 
-    protected boolean send(BankAccount receiver, double amount) {
+    public boolean send(BankAccount receiver, double amount) {
 
         if (take(amount)) {
             receiver.put(amount);
-            System.out.println("Перевод между счетами успешно завершен.");
+            System.out.println("Перевод между счетами успешно завершен.");//////
             return true;
         }
         return false;

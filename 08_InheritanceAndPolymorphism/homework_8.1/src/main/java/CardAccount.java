@@ -2,7 +2,7 @@ public class CardAccount extends BankAccount {
     public static final double COMMISSION = 0.01;
 
     @Override
-    protected boolean take(double amountToTake) {
+  public boolean take(double amountToTake) {
 
         double commission = amountToTake * COMMISSION;
         double amountWithCommission = commission + amountToTake;
@@ -11,7 +11,7 @@ public class CardAccount extends BankAccount {
             return true;
         }
 
-        return false;
+        return false;//////
     }
 
 }

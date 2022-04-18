@@ -6,7 +6,7 @@ public class DepositAccount extends BankAccount {
     private LocalDate lastIncome;
     public static final long NUMBER_OF_MONTHS = 1;
 
-    public void put(double amountToPut) {
+   public void put(double amountToPut) {
         lastIncome = LocalDate.now();
         // lastIncome = LocalDate.of(2021, 3, 24);
         super.put(amountToPut);
@@ -14,7 +14,7 @@ public class DepositAccount extends BankAccount {
     }
 
     @Override
-    protected boolean take(double amountToTake) {
+    public boolean take(double amountToTake) {
 
         if (lastIncome == null && getAmount() == 0) {
             System.out.println("Пополните счет. Отсутствуют средства.");
@@ -28,7 +28,7 @@ public class DepositAccount extends BankAccount {
             super.take(amountToTake);
             return true;
         } else {
-            System.out.println("С момента последнего пополнения не прошёл 1 месяц.");
+            System.out.println("С момента последнего пополнения не прошёл 1 месяц.");//
 
             return false;
         }
