@@ -1,7 +1,9 @@
+import com.opencsv.exceptions.CsvException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,13 +15,13 @@ public class TestMovementList {
 
     @Test
     @DisplayName("Сумма прихода")
-    void testSumIncome() {
+    void testSumIncome() throws IOException, CsvException {
         assertEquals(460_800.0, new Movements(getCsvFilenamePath()).getIncomeSum(), DELTA);
     }
 
     @Test
     @DisplayName("Сумма расходов")
-    void testSumExpense() {
+    void testSumExpense() throws IOException, CsvException {
         assertEquals(466_393.07, new Movements(getCsvFilenamePath()).getExpenseSum(), DELTA);
     }
 
