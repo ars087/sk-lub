@@ -7,92 +7,75 @@ import com.opencsv.exceptions.CsvException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Movements {
 
+    public List<String[]> readFromFileToList = new ArrayList<>() {
+    };
 
-    public Optional<Double> optionalIncome;
-    public Optional<Double> optionalExpense;
-
+    public String path;
 
     public Movements(String pathMovementsCsv) throws IOException, CsvException {
 
-        countIncomSum(pathMovementsCsv);
-        countExpenseSum(pathMovementsCsv);
+        path = pathMovementsCsv;
+        parsFile(pathMovementsCsv);
+    }
+
+    public List<String[]> getReadFromFile() {
+        return readFromFileToList;
+    }
+
+    public double getIncomeSum() {
+        return readFromFileToList
+                .stream()
+                .flatMap((p) -> {
+                    return Arrays.stream(p, 6, 7);
+                })
+                .map(d -> d.replace(",", "."))
+                .mapToDouble(Double::parseDouble)
+                .sum();
 
     }
 
     public double getExpenseSum() {
 
-        return optionalExpense.orElseGet(() -> optionalExpense.get());
+        return readFromFileToList
+                .stream()
+                .flatMap((p) -> Arrays.stream(p, 7, 8))
+                .map(d -> d.replace(",", "."))
+                .mapToDouble(Double::parseDouble)
+                .sum();
 
     }
 
-    public double getIncomeSum() {
-
-
-        return optionalIncome.orElseGet(() -> optionalIncome.get());
-
-    }
-
-    public void countIncomSum(String pathString) throws IOException, CsvException {
-
+    public void parsFile(String pathString) throws IOException, CsvException {
 
         Reader reader = new FileReader(pathString);
-
         CSVParser parserBuilder = new CSVParserBuilder()
-
+                 .withEscapeChar('\'')
                 .build();
-
         CSVReader csvReader = new CSVReaderBuilder(reader)
                 .withSkipLines(1)
                 .withCSVParser(parserBuilder)
                 .build();
-
-        List<String[]> mass = csvReader.readAll();
-        optionalIncome = mass
-                .stream()
-                .flatMap((pre) -> {
-                    return Arrays.stream(pre, 6, 7);
-                })
-                .map(d -> d.replaceAll(",", "."))
-                .map(Double::parseDouble)
-
-                .reduce(Double::sum);
-
+        readFromFileToList = csvReader.readAll();
 
     }
 
-    public void countExpenseSum(String pathString) throws IOException, CsvException {
+    public double getExpenseSumSecond() {   //метод работает быстрее чем стримы
 
-        Reader reader = new FileReader(pathString);
+        double sum = 0;
+        for (String[] r : readFromFileToList) {
 
-        CSVParser parserBuilder = new CSVParserBuilder()
-
-                .build();
-
-        CSVReader csvReader = new CSVReaderBuilder(reader)
-                .withSkipLines(1)
-                .withCSVParser(parserBuilder)
-                .build();
-
-        List<String[]> mass = csvReader.readAll();
-        optionalExpense = mass
-                .stream()
-                .flatMap((pre) -> {
-                    return Arrays.stream(pre, 7, 8);
-                })
-                .map(d -> d.replaceAll(",", "."))
-                .map(Double::parseDouble)
-                .reduce(Double::sum);
-
-
+            sum += Double.parseDouble(r[7].replace(",", "."));
+        }
+        return sum;
     }
-
-
 }
 
 

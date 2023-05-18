@@ -1,37 +1,52 @@
-import com.opencsv.CSVParser;
-import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
-import net.sf.saxon.expr.Component;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
 
 public class Main {
+
+
     public static void main(String[] args) throws IOException, CsvException {
-
         String path = "C:\\java_basics\\FilesAndNetwork\\ReadCsvFiles\\src\\test\\resources\\MovementList.csv";
-        String pathOne = "C:\\java_basics\\FilesAndNetwork\\ReadCsvFiles\\src\\test\\resources\\MovementListFloat.csv";
-        String pathTwo = "C:\\java_basics\\FilesAndNetwork\\ReadCsvFiles\\src\\test\\resources\\MovementListInteger.csv";
-          Movements movements = new Movements(pathOne);
+        Movements movements = new Movements(path);
 
+        List<String[]> mass = movements.getReadFromFile();
+        HashMap<String, Double> hashMap = new HashMap<>();
+        //  mass.forEach((w)->System.out.println(  Arrays.toString(w)));
 
-        System.out.println( movements.getExpenseSum());
-
-        System.out.println( movements.getIncomeSum());
-
+        try {
+            for (String[] p : mass) {
+                if (!p[7].equals("0")) {
+                    String replaceString = p[5].replace(">", "\\");
+                    Double aDouble = Double.parseDouble(p[7].replace(",", "."));
+                    String subStr = replaceString.substring(replaceString.lastIndexOf("\\") + 1, replaceString.indexOf("       "));
+                    if (!hashMap.containsKey(subStr)) {
+                        hashMap.put(subStr, aDouble);
+                    } else {
+                        hashMap.put(subStr, aDouble + hashMap.get(subStr));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Set<String> strings = hashMap.keySet();
+        strings.forEach((p) -> System.out.println(p + "  " + hashMap.get(p)));
 
     }
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
