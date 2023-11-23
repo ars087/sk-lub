@@ -5,47 +5,38 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        String srcFolder = "/users/sortedmap/Desktop/src";
-        String dstFolder = "/users/sortedmap/Desktop/dst";
+        String srcFolder = "C:\\Users\\ars08\\OneDrive\\Desktop\\src\\";
+        String dstFolder = "C:\\Users\\ars08\\OneDrive\\Desktop\\dst\\";
+        long startOfcounting = System.currentTimeMillis();
+        copyPhoto(srcFolder, dstFolder, startOfcounting);
+    }
 
-        File srcDir = new File(srcFolder);
+    public static void copyPhoto(String strFolder, String dstFolder, long startOfcounting) {
 
-        long start = System.currentTimeMillis();
-
+        File srcDir = new File(strFolder);
         File[] files = srcDir.listFiles();
+        int proc = Runtime.getRuntime().availableProcessors();
 
-        try {
-            for (File file : files) {
-                BufferedImage image = ImageIO.read(file);
-                if (image == null) {
-                    continue;
-                }
-
-                int newWidth = 300;
-                int newHeight = (int) Math.round(
-                    image.getHeight() / (image.getWidth() / (double) newWidth)
-                );
-                BufferedImage newImage = new BufferedImage(
-                    newWidth, newHeight, BufferedImage.TYPE_INT_RGB
-                );
-
-                int widthStep = image.getWidth() / newWidth;
-                int heightStep = image.getHeight() / newHeight;
-
-                for (int x = 0; x < newWidth; x++) {
-                    for (int y = 0; y < newHeight; y++) {
-                        int rgb = image.getRGB(x * widthStep, y * heightStep);
-                        newImage.setRGB(x, y, rgb);
-                    }
-                }
-
-                File newFile = new File(dstFolder + "/" + file.getName());
-                ImageIO.write(newImage, "jpg", newFile);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (files.length < proc) {
+            proc = files.length;
         }
+        int devCount = (files.length + 1) / proc;
 
-        System.out.println("Duration: " + (System.currentTimeMillis() - start));
+        for (int i = 0; i < files.length; i++) {
+
+            if (0 == i % devCount && proc >= 1) {
+
+                if (proc == 1) {
+                    devCount = files.length - i;
+
+                }
+
+                File[] partArray = new File[devCount];
+                System.arraycopy(files, i, partArray, 0, partArray.length);
+                var e = new CreateThread(partArray, dstFolder, startOfcounting);
+                new Thread(e, "new thread").start();
+                proc--;
+            }
+        }
     }
 }
